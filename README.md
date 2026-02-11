@@ -1,19 +1,21 @@
 # AWX Execution Environment - SSH
 
-This execution environment is based on `quay.io/ansible/awx-ee:24.6.1` with additional packages and a fix for SSH connectivity.
+This execution environment is based on `ghcr.io/gdmkonsult/awx-ee:new` with a fix for SSH connectivity issues.
 
 ## Key Differences from Base Image
 
 - Added user `awx` (uid 1000) to fix SSH "No user exists for uid 1000" error
-- Additional packages: grub2-tools-minimal, openssl, gcc, python3.9-devel, openldap-devel, butane
-- Additional tools: helm, kubeadm
-- Additional Python packages: pynetbox, netaddr, pexpect, py-pure-client, purestorage, dnspython, python-ldap, passlib
+
+All other packages and tools are inherited from the base image `ghcr.io/gdmkonsult/awx-ee:new`.
 
 ## Building
 
+GitHub Actions automatically builds and pushes the image on push to main branch.
+
+Manual build:
 ```bash
-docker build -t ghcr.io/gdmkonsult/awx-ee-ssh:latest .
-docker push ghcr.io/gdmkonsult/awx-ee-ssh:latest
+docker build -t ghcr.io/gdmkonsult/awx-ee-ssh:main .
+docker push ghcr.io/gdmkonsult/awx-ee-ssh:main
 ```
 
 ## Issue Reference
